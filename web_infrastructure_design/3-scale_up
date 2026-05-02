@@ -1,0 +1,59 @@
+# 3. Scale Up Infrastructure
+
+## New Components Added
+
+### 1. Additional Load Balancer (HAproxy cluster)
+We add a second load balancer to form a cluster with the first one.
+
+**Why:**
+- Removes Single Point of Failure (SPOF)
+- Provides high availability
+- If one load balancer fails, the other continues serving traffic
+
+---
+
+### 2. Separation of Components into Different Servers
+
+#### Web Server (Nginx)
+Handles HTTP/HTTPS requests and serves static content.
+
+**Why:**
+- Improves performance
+- Allows independent scaling
+
+---
+
+#### Application Server
+Executes application logic and processes dynamic requests.
+
+**Why:**
+- Separates logic from request handling
+- Easier to maintain and scale independently
+
+---
+
+#### Database Server (MySQL)
+Stores and manages application data.
+
+**Why:**
+- Dedicated resources for database operations
+- Improves performance and reliability
+
+---
+
+### 3. Additional Server
+
+Used to host one of the separated components (web/app/db).
+
+**Why:**
+- Enables distribution of workload
+- Improves scalability and fault tolerance
+
+---
+
+## Benefits of This Architecture
+
+- Better scalability (each layer can scale independently)
+- Improved fault tolerance
+- Clear separation of concerns
+- Easier maintenance and upgrades
